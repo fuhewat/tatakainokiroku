@@ -1,0 +1,60 @@
+/*****トップページ*****/
+.battle-main {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #000000;
+  color: #ffffe5;
+}
+
+.new-challenger{
+  font-size: 50px;
+  background-color: #ff0000;
+  margin-top: 10px;
+  animation: blink 1s infinite;
+  width: 50%;
+}
+
+.battle-content {
+  background-color: #ff0000;
+  font-size: 30px;
+  padding: 0px 20px;
+  justify-content: center;
+  border: #ffffe5 solid 3px;
+  border-radius: 20px;
+}
+
+.battle-start {
+  color: #ffffe5;
+  font-size: 40px;
+  background-color: #0004f0;
+  border: #000000 5px solid;
+  padding: 0px 20px;
+  border-radius: 20px;
+  border: #ffffe5 solid 3px;
+  margin-top: 10px;
+  text-decoration: none;
+}
+
+.site-description{
+  font-size: 30px;
+  color: gold;
+}
+
+.players {
+  list-style-type: none;
+
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+#element {
+  animation: blink 1s infinite;
+}

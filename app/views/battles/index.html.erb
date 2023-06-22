@@ -1,2 +1,37 @@
 <%= render "shared/header" %>
-<h1>hello</h1>
+<div class = "battle-main" >
+  <% if user_signed_in? %> 
+    <div class = "new-challenger">HERE COMES A NEW CHALLENGER!!<br> 対戦申し込みが届いています</div> 
+    <p>対戦申し込みを受け入れる場合は、内容を確認してから対戦を開始してください</p>
+    <div class = "battle-content">対戦の申し込み内容を確認する</div>
+    <p>↓いつも通り対戦をする方はこちら↓</P>
+    <%= link_to "たたかいはじめる",new_battle_path, class: "battle-start"  %>
+  <% else %>
+    <div class = "site-description">新規登録、ログインをすることで対戦の結果を記録できるようになります！</div>
+  <% end %>
+  <div  class = "popular-title">  
+    <h1>人気のゲームタイトル</h1>
+    <h2>大乱闘スマッシュブラザーズSPECIAL</h2>
+    <h3>参加人数1300人</h3>
+    <ul class = "players">現在のTOP3
+      <li>test1     勝率80.5%</li>
+      <li>test2     勝率78.4%</li>
+      <li>test3     勝率77.8%</li>
+    </ul>
+    <h2>ストリートファイター6</h2>
+    <h3>参加人数1100人</h3>
+    <ul class = "players">現在のTOP3
+      <li>test1     勝率80.5%</li>
+      <li>test2     勝率78.4%</li>
+      <li>test3     勝率77.8%</li>
+    </ul>
+    <h2>スプラトゥーン3</h2>
+    <h3>参加人数800人</h3>
+    <ul class = "players">現在のTOP3
+      <li>test1     勝率80.5%</li>
+      <li>test2     勝率78.4%</li>
+      <li>test3     勝率77.8%</li>
+    </ul>
+  </div>
+</div>
+<%= render "shared/footer" %>

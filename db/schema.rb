@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_16_124121) do
+ActiveRecord::Schema.define(version: 2023_06_21_054156) do
+
+  create_table "battles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "title", default: "", null: false
+    t.string "my_character"
+    t.string "rival_character"
+    t.integer "win", default: 0, null: false
+    t.integer "lose", default: 0, null: false
+    t.text "memo"
+    t.string "battle_player", default: "", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "nickname", default: "", null: false

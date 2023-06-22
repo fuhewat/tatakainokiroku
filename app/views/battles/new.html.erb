@@ -1,0 +1,36 @@
+<%= render "shared/header" %>
+<div class="battle-all">
+<%= image_tag("leftflame.png",class:"flame", alt: "画像の説明") %>
+<%= form_with model: @battle, local: true do |f| %>
+<div class="battle-start-main">
+  <div class="title">ゲームタイトル<span class="indispensable">必須</span></div>
+  
+  <%= f.text_field :title, class:"game_title", id:"item-name", placeholder:"ゲームタイトルを入力"%>
+  <div class="battle-player">対戦相手<span class="indispensable">必須</span></div>
+
+  <%= f.text_field :battle_player, class:"battle_player", placeholder:"対戦相手を名前を入力"%>
+  <div class="battle-character">使用キャラクター   (任意)</div>
+    <div class="vs">
+      <%= f.text_field :my_character, class:"character", placeholder:"自分のキャラクター名"%>
+      <%= f.text_field :rival_character, class:"character", placeholder:"相手のキャラクター名"%>
+    </div>
+    <%= f.text_area :memo, class:"game_title", placeholder:"メモ  ルールやステージ"%>
+  <div class="result">
+    <div class="win">
+      <div class="win-btn" id="winButton">WIN</div>
+      <div class="win-lose" id="winCount">勝ち  0回</div>
+    </div>
+    <div class="lose">
+      <div class="lose-btn" id="loseButton">LOSE</div>
+      <div class="win-lose" id="loseCount">負け  0回</div>
+    </div>
+  </div>
+
+  <div class="total" id="totalCount">今回の合計試合数  0回</div>
+  <div class="win-rate" id="winRate">勝率 0%</div>
+  <%= f.submit "対戦終了" ,class:"battle-end", id:"endButton" %>
+  <% end %>
+</div>
+<%= image_tag("rigthflame.jpg", class:"flame",alt: "画像の説明") %>
+</div>
+<%= render "shared/footer" %>

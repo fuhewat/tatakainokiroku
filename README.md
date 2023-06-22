@@ -22,8 +22,8 @@ has_many :battles
 ## battles
 |Column             |Type       |Options                        |
 |-------------------|-----------|-------------------------------|
-|game_title              |string     |null: false                    |
-|description        |text       |null: false                    |
+|title              |string     |null: false                    |
+|        |text       |null: false                    |
 |price              |integer    |null: false                    |
 |category_id        |integer    |null: false                    |
 |condition_id       |integer    |null: false                    |
