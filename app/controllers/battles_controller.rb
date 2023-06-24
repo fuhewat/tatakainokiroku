@@ -1,5 +1,4 @@
 class BattlesController < ApplicationController
-
   def index
   end
 
@@ -16,10 +15,18 @@ class BattlesController < ApplicationController
     end
   end
 
-    private
-
-    def battle_params
-      params.require(:battle).permit(:title, :my_character, :rival_character, :win, :lose, :memo, :battle_player)
+  def update
+    @battle = Battle.find(params[:id])
+    if @battle.update(battle_params)
+      render json: { status: 'success' }
+    else
+      render json: { status: 'error' }, status: :unprocessable_entity
     end
   end
 
+  private
+
+  def battle_params
+    params.require(:battle).permit(:title, :my_character, :rival_character, :win, :lose, :memo, :battle_player)
+  end
+end
