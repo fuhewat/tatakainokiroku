@@ -1,7 +1,7 @@
 <%= render "shared/header" %>
 <div class="battle-all">
-<%= image_tag("leftflame.png",class:"flame", alt: "画像の説明") %>
-<%= form_with model: @battle, local: true do |f| %>
+<%= image_tag("leftflame.png",class:"flame", alt: "左の炎") %>
+<%= form_with model: @battle, id: 'battle_result' ,local: true do |f| %>
 <div class="battle-start-main">
   <div class="title">ゲームタイトル<span class="indispensable">必須</span></div>
   
@@ -28,9 +28,10 @@
 
   <div class="total" id="totalCount">今回の合計試合数  0回</div>
   <div class="win-rate" id="winRate">勝率 0%</div>
+ 
   <%= f.submit "対戦終了" ,class:"battle-end", id:"endButton" %>
   <% end %>
 </div>
-<%= image_tag("rigthflame.jpg", class:"flame",alt: "画像の説明") %>
+<%= image_tag("rigthflame.jpg", class:"flame",alt: "右の炎") %>
 </div>
 <%= render "shared/footer" %>

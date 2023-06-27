@@ -16,11 +16,10 @@ class BattlesController < ApplicationController
   end
 
   def update
-    @battle = Battle.find(params[:id])
-    if @battle.update(battle_params)
-      render json: { status: 'success' }
-    else
-      render json: { status: 'error' }, status: :unprocessable_entity
+    def update
+      @battle = Battle.find(params[:id])
+      @battle.update(win: params[:win_count], lose: params[:lose_count])
+      
     end
   end
 

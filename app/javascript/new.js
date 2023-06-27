@@ -7,12 +7,12 @@ document.addEventListener('DOMContentLoaded', function() {
   let loseCount = 0;
   const endButton = document.getElementById("endButton");
   const totalCountElement = document.getElementById("totalCount");
-  const winRateElement = document.getElementById("winRate");
+  const winRateElement = document.getElementById("winRate")
 
-  let totalCount = parseInt(winCountElement.textContent.split(" ")[1]) || 0 + parseInt(loseCountElement.textContent.split(" ")[1]) || 0;
+  let totalCount = (parseInt(winCountElement.textContent.split(" ")[1]) || 0) + (parseInt(loseCountElement.textContent.split(" ")[1]) || 0);
   totalCountElement.textContent = "今回の合計試合数  " + totalCount + "回";
 
-  let winRate = (parseInt(winCountElement.textContent.split(" ")[1]) || 0) / (totalCount || 1) * 100;
+  let winRate = (winCount / (totalCount || 1)) * 100;
   winRateElement.textContent = "勝率  " + winRate.toFixed(1) + "%";
 
   winButton.addEventListener('mouseover', function() {
@@ -61,10 +61,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   endButton.addEventListener('click', function() {
     endButton.style.marginTop = '15px';
+    sendDataToServer(winCount, loseCount);
     setTimeout(function() {
       endButton.style.marginTop = '0';
     }, 15);
-    sendDataToServer();
+    updateTotalCount();
   });
 
   function updateTotalCount() {
@@ -74,19 +75,25 @@ document.addEventListener('DOMContentLoaded', function() {
     winRateElement.textContent = "勝率  " + winRate.toFixed(1) + "%";
   }
 
-  function sendDataToServer() {
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/battles', true);
+  function sendDataToServer(winCount, loseCount) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('PATCH', '/battles/' + battleId, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
 
     // リクエストボディのデータを作成
-    var data = {
+    let data = {
       battle: {
         win: winCount,
         lose: loseCount
       }
     };
 
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        document.getElementById("battle_result").submit();
+      }
+    };
+    
     // リクエストを送信
     xhr.send(JSON.stringify(data));
   }
