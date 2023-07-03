@@ -20,8 +20,10 @@ ActiveRecord::Schema.define(version: 2023_06_21_054156) do
     t.integer "lose", default: 0, null: false
     t.text "memo"
     t.string "battle_player", default: "", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_battles_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -42,4 +44,5 @@ ActiveRecord::Schema.define(version: 2023_06_21_054156) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "battles", "users"
 end

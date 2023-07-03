@@ -33,6 +33,9 @@ document.addEventListener('DOMContentLoaded', function() {
     updateTotalCount();
   });
 
+  const winCountField = document.getElementById("winCountField");
+  winCountField.value = winCount;
+
   loseButton.addEventListener('mouseover', function() {
     loseButton.style.backgroundColor = '#ff9595';
   });
@@ -61,7 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   endButton.addEventListener('click', function() {
     endButton.style.marginTop = '15px';
-    sendDataToServer(winCount, loseCount);
     setTimeout(function() {
       endButton.style.marginTop = '0';
     }, 15);
@@ -73,28 +75,5 @@ document.addEventListener('DOMContentLoaded', function() {
     totalCountElement.textContent = "今回の合計試合数  " + totalCount + "回";
     winRate = (winCount / totalCount) * 100;
     winRateElement.textContent = "勝率  " + winRate.toFixed(1) + "%";
-  }
-
-  function sendDataToServer(winCount, loseCount) {
-    let xhr = new XMLHttpRequest();
-    xhr.open('PATCH', '/battles/' + battleId, true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-
-    // リクエストボディのデータを作成
-    let data = {
-      battle: {
-        win: winCount,
-        lose: loseCount
-      }
-    };
-
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        document.getElementById("battle_result").submit();
-      }
-    };
-    
-    // リクエストを送信
-    xhr.send(JSON.stringify(data));
   }
 });

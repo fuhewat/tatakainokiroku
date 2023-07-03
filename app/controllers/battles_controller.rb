@@ -11,21 +11,19 @@ class BattlesController < ApplicationController
     if @battle.save
       redirect_to root_path
     else
+      flash.now[:error] = @battle.errors.full_messages
       render :new
     end
   end
 
   def update
-    def update
       @battle = Battle.find(params[:id])
       @battle.update(win: params[:win_count], lose: params[:lose_count])
-      
-    end
   end
 
   private
 
   def battle_params
-    params.require(:battle).permit(:title, :my_character, :rival_character, :win, :lose, :memo, :battle_player)
+    params.require(:battle).permit(:title, :my_character, :rival_character, :win, :lose, :memo, :battle_player).merge(user_id: current_user.id)
   end
 end

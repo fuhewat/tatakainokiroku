@@ -81,7 +81,7 @@ has_many :battles
 |lose               |integer    |null: false                    |
 |memo               |text       |                               |
 |battle_player      |integer    |null: false                    |
-
+|user               |references |null: false, foreign_key: true |
 ### Association
 belongs_to :user
 
