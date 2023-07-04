@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
   const winButton = document.getElementById("winButton");
   const winCountElement = document.getElementById("winCount");
-  let winCount = 0;
+  let winCount = parseInt(winCountElement.textContent.split(" ")[1]) || 0;
+
   const loseButton = document.getElementById("loseButton");
   const loseCountElement = document.getElementById("loseCount");
-  let loseCount = 0;
+  let loseCount = parseInt(loseCountElement.textContent.split(" ")[1]) || 0;
+  
   const endButton = document.getElementById("endButton");
   const totalCountElement = document.getElementById("totalCount");
   const winRateElement = document.getElementById("winRate")
@@ -30,11 +32,10 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
       winButton.style.marginTop = '0';
     }, 15);
+    document.getElementById("winCountField").value = winCount;
     updateTotalCount();
   });
 
-  const winCountField = document.getElementById("winCountField");
-  winCountField.value = winCount;
 
   loseButton.addEventListener('mouseover', function() {
     loseButton.style.backgroundColor = '#ff9595';
@@ -51,8 +52,10 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
       loseButton.style.marginTop = '0';
     }, 15);
+    document.getElementById("loseCountField").value = loseCount;
     updateTotalCount();
   });
+
 
   endButton.addEventListener('mouseover', function() {
     endButton.style.backgroundColor = '#00ff00';
@@ -60,14 +63,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   endButton.addEventListener('mouseout', function() {
     endButton.removeAttribute("style");
-  });
-
-  endButton.addEventListener('click', function() {
-    endButton.style.marginTop = '15px';
-    setTimeout(function() {
-      endButton.style.marginTop = '0';
-    }, 15);
-    updateTotalCount();
   });
 
   function updateTotalCount() {

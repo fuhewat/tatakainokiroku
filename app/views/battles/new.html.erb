@@ -30,17 +30,19 @@
     <div class="win">
       <div class="win-btn" id="winButton">WIN</div>
       <div class="win-lose" id="winCount">勝ち  0回</div>
-      <input type="hidden" name="win" id="winCountField">
+
     </div>
     <div class="lose">
       <div class="lose-btn" id="loseButton">LOSE</div>
       <div class="win-lose" id="loseCount">負け  0回</div>
+      
     </div>
   </div>
 
   <div class="total" id="totalCount">今回の合計試合数  0回</div>
   <div class="win-rate" id="winRate">勝率 0%</div>
- 
+  <%= f.hidden_field :win, id: "winCountField" %>
+  <%= f.hidden_field :lose, id: "loseCountField" %>
   <%= f.submit "対戦終了" ,class:"battle-end", id:"endButton" %>
   <% end %>
 </div>

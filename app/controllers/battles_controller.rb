@@ -18,7 +18,7 @@ class BattlesController < ApplicationController
 
   def update
       @battle = Battle.find(params[:id])
-      @battle.update(win: params[:win_count], lose: params[:lose_count])
+      @battle.update(win: params[:battle][:win], lose: params[:battle][:lose])
   end
 
   private
