@@ -1,0 +1,15 @@
+<%= render "shared/header" %>
+<div class="user_result">
+<h1><%= @user.nickname %>の詳細</h1>
+<h2>自己紹介</h2>
+<p><%= @user.profile %></p>
+<h3>直近5対戦の成績</h3>
+ <% @user.battles.order(updated_at: :desc).limit(5).each do |battle| %>
+ <p>------------------------------------------------------------</p>
+    <p><%= battle.title %></p>
+    <p><%= battle.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+    <p>対戦相手  <%= battle.battle_player %>   勝率 <%= (battle["win"].to_i / (battle["win"].to_i + battle["lose"].to_i).to_f * 100).round(2) %>%</p>
+    <p>試合数  <%= battle.win + battle.lose %>     勝ち <%= battle.win %>回  負け <%= battle.lose %>回</p>
+  <% end %>
+</div>
+<%= render "shared/footer" %>
