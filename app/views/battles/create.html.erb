@@ -1,0 +1,48 @@
+<%= render "shared/header" %>
+
+  <div class="battle-result-main">
+    <div class="battle-result">BATTLE RESULT<br>今回の対戦結果</div>
+<div>
+  <%= current_user["nickname"]%> VS <%= @battle["battle_player"] %>
+  </div>
+   <%= @battle["battle_player"] %>さんに対してあなたの勝率は
+   <span class="win-rate-percentage">
+  <%= (@battle["win"].to_i / (@battle["win"].to_i + @battle["lose"].to_i).to_f * 100).round(2) %>%です！
+  </span>   
+  <% win_rate = (@battle["win"].to_i / (@battle["win"].to_i + @battle["lose"].to_i).to_f) * 100 %>
+  <% if win_rate == 0 %>
+  <p>あなたはまだ相手プレイヤーには全く勝てないようです。</p>
+    <% elsif win_rate <= 10 %>
+      <p>まだまだ相手プレイヤーには勝てません。勝てたとしても相手のミスが多いでしょう。</p>
+    <% elsif win_rate <= 20 %>
+      <p>たまに勝てることがありますが、まだまだ相手プレイヤーの方がレベルは上です。</p>
+    <% elsif win_rate <= 30 %>
+      <p>上手さでは相手プレイヤーの方がレベルは上ですが、勝てることもあります！</p>
+    <% elsif win_rate <= 40 %>
+      <p>勝てるようにはなってきています。もう少しで対等な試合になるでしょう！</p>
+    <% elsif win_rate <= 49 %>
+      <p>ギリギリのところで負けてしまっているようです。もう少しで相手プレイヤーに勝率が上回るでしょう！</p>
+    <% elsif win_rate == 50 %>
+      <p>熱い対戦でした！相手プレイヤーと同じレベルです！</p>
+    <% elsif win_rate <= 60 %>
+      <p>全体的に勝ててはいますが、ギリギリです。負けてしまうこともあるでしょう。</p>
+    <% elsif win_rate <= 70 %>
+      <p>あなたの方が勝率は高いですが、負けることもあるようです。</p>
+    <% elsif win_rate <= 80 %>
+      <p>あなたの方が強いです。大体の対戦は勝っています。</p>
+    <% elsif win_rate <= 90 %>
+      <p>あなたの方が圧倒的にレベルが上です。簡単に負けることはないでしょう!</p>
+    <% elsif win_rate <= 99 %>
+      <p>ほぼ相手プレイヤーに負けることはありません。ミスでもしない限り負けることはないでしょう!</p>
+    <% else win_rate == 100%>
+      <p>あなたは相手プレイヤーに負けることはありません！</p>
+<% end %>
+
+
+  <div>試合数 <%= (@battle["win"].to_i + @battle["lose"].to_i) %>回</div>
+    <div>勝ち回数  <%= (@battle["win"]) %>回</div>
+    <div>負け回数  <%= (@battle["lose"]) %>回</div>
+  </div>
+</div>
+
+<%= render "shared/footer" %>

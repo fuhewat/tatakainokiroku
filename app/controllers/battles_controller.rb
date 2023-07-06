@@ -9,7 +9,7 @@ class BattlesController < ApplicationController
   def create
     @battle = Battle.new(battle_params)
     if @battle.save
-      redirect_to root_path
+      battle =  @battle.attributes
     else
       flash.now[:error] = @battle.errors.full_messages
       render :new
