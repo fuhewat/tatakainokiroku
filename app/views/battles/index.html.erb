@@ -4,9 +4,13 @@
     <div class = "new-challenger">HERE COMES A NEW CHALLENGER!!<br> 対戦申し込みが届いています</div> 
     <p>対戦申し込みを受け入れる場合は、内容を確認してから対戦を開始してください</p>
     <div class = "battle-content">対戦の申し込み内容を確認する</div>
-    <p>↓いつも通り対戦をする方はこちら↓</P>
+    <p>↓たたかいに参加したい方はこちら↓</P>
+    <%= link_to "たたかいの募集を見る",new_battle_path, class: "battle-start"  %>
+    <p>↓たたかいを募集する方はこちら↓</P>
+    <%= link_to "たたかいを募集する",new_battle_path, class: "battle-start"  %>
+    <p>↓対戦の勝率を登録したい方はこちら↓</P>
     <%= link_to "たたかいはじめる",new_battle_path, class: "battle-start"  %>
-  <% else %>
+      <% else %>
     <div class = "site-description">新規登録、ログインをすることで対戦の結果を記録できるようになります！</div>
   <% end %>
   <div  class = "popular-title">  
